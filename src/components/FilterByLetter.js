@@ -1,39 +1,62 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import '../styles/index.css';
+import {fetchCharacters} from '../actions';
+
+
 class FilterByLetter extends Component {
+	constructor(props){
+		super(props);
+		this.handleFilterChange = this.handleFilterChange.bind(this);
+		
+		
+	}
+	handleFilterChange(letter){
+		this.changeLetter(letter);
+	}
+	changeLetter = (letter) => {
+			this.props.newLetter(letter);
+		}
 	render() {
 		return (
 		<div className="alphabetLinks">
-			<a className="letter">A</a>
-			<a className="letter">B</a>
-			<a className="letter">C</a>
-			<a className="letter">D</a>
-			<a className="letter">E</a>
-			<a className="letter">F</a>
-			<a className="letter">G</a>
-			<a className="letter">H</a>
-			<a className="letter">I</a>
-			<a className="letter">J</a>
-			<a className="letter">K</a>
-			<a className="letter">L</a>
-			<a className="letter">M</a>
-			<a className="letter">N</a>
-			<a className="letter">O</a>
-			<a className="letter">P</a>
-			<a className="letter">Q</a>
-			<a className="letter">R</a>
-			<a className="letter">S</a>
-			<a className="letter">T</a>
-			<a className="letter">U</a>
-			<a className="letter">V</a>
-			<a className="letter">W</a>
-			<a className="letter">X</a>
-			<a className="letter">Y</a>
-			<a className="letter">Z</a>
-		
+			<a className="letter" onClick={() => this.handleFilterChange('a')}>A</a>
+			<a className="letter" onClick={() => this.handleFilterChange('b')}>B</a>
+			<a className="letter" onClick={() => this.handleFilterChange('c')}>C</a>
+			<a className="letter" onClick={() => this.handleFilterChange('d')}>D</a>
+			<a className="letter" onClick={() => this.handleFilterChange('e')}>E</a>
+			<a className="letter" onClick={() => this.handleFilterChange('f')}>F</a>
+			<a className="letter" onClick={() => this.handleFilterChange('g')}>G</a>
+			<a className="letter" onClick={() => this.handleFilterChange('h')}>H</a>
+			<a className="letter" onClick={() => this.handleFilterChange('i')}>I</a>
+			<a className="letter" onClick={() => this.handleFilterChange('j')}>J</a>
+			<a className="letter" onClick={() => this.handleFilterChange('k')}>K</a>
+			<a className="letter" onClick={() => this.handleFilterChange('l')}>L</a>
+			<a className="letter" onClick={() => this.handleFilterChange('m')}>M</a>
+			<a className="letter" onClick={() => this.handleFilterChange('n')}>N</a>
+			<a className="letter" onClick={() => this.handleFilterChange('o')}>O</a>
+			<a className="letter" onClick={() => this.handleFilterChange('p')}>P</a>
+			<a className="letter" onClick={() => this.handleFilterChange('q')}>Q</a>
+			<a className="letter" onClick={() => this.handleFilterChange('r')}>R</a>
+			<a className="letter" onClick={() => this.handleFilterChange('s')}>S</a>
+			<a className="letter" onClick={() => this.handleFilterChange('t')}>T</a>
+			<a className="letter" onClick={() => this.handleFilterChange('u')}>U</a>
+			<a className="letter" onClick={() => this.handleFilterChange('v')}>V</a>
+			<a className="letter" onClick={() => this.handleFilterChange('w')}>W</a>
+			<a className="letter" onClick={() => this.handleFilterChange('x')}>X</a>
+			<a className="letter" onClick={() => this.handleFilterChange('y')}>Y</a>
+			<a className="letter" onClick={() => this.handleFilterChange('z')}>Z</a>
 		</div>
 
 		) 
 	}
 }
-export default FilterByLetter;
+function mapStateToProps(state) {
+	return state;
+}
+function mapDispatchToProps(dispatch){
+	return ({
+		newLetter: (letter) => {dispatch(fetchCharacters(letter))}
+	})
+}
+export default connect(mapStateToProps, mapDispatchToProps)(FilterByLetter);

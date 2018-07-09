@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import CharacterList from './CharacterList';
 import FilterByLetter from './FilterByLetter';
+import {fetchCharacters} from '../actions';
+
 class App extends Component {
+	constructor(props){
+		super(props);
+	}	
+	
 	render() {
 		return(
 			<div>
