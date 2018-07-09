@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import CharacterList from './CharacterList';
 
 class App extends Component {
 	render() {
@@ -10,17 +10,7 @@ class App extends Component {
 				<h3>Input Field</h3>
 				<h3>Search Results</h3>
 				<div>
-					{
-						this.props.characters.slice(0, 10).map((character, index) => {
-							
-							console.log('sometext');
-							return (
-								<div>
-									<h4>{character.name}</h4>
-									<h4>{character.description}</h4>
-								</div>							);
-						})
-					}
+					<CharacterList />
 				</div>
 			</div>
 		);
