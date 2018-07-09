@@ -9,7 +9,7 @@ import {fetchCharacters} from './actions';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 store.subscribe(() => console.log('store', store.getState()));
-store.dispatch(fetchCharacters());
+store.dispatch(fetchCharacters('a'));
 
 ReactDOM.render(
 	<Provider store={store}>

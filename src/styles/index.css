@@ -1,0 +1,10 @@
+.alphabetLinks{
+	display: inline-block;
+}
+.letter{
+	display: inline-block;
+	margin-left: 4px;
+	margin-right: 4px;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
