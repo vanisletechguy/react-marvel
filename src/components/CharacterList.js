@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-//import addCharacterById from '../actions';
 import Character from './Character';
 import {setSelectedCharacter} from '../actions';
 
@@ -22,7 +21,9 @@ class CharacterList extends Component {
 	return( 
 	<div> 
 		<h3>Characters</h3>
-				<ul className="list-group">
+		<div className="card-wrapper">
+			<div>
+				<ul className="list-group scroll-box">
 					{
 						this.props.characters[0].map(character => {
 							return(
@@ -40,6 +41,9 @@ class CharacterList extends Component {
 						})
 					}
 				</ul>
+			
+			</div>
+			</div>
 			</div>
 		);
 	}

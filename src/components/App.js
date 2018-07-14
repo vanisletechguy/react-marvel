@@ -3,29 +3,25 @@ import {connect} from 'react-redux';
 import CharacterList from './CharacterList';
 import Biography from './Biography';
 import FilterByLetter from './FilterByLetter';
-//import {fetchCharacters} from '../actions';
 
 class App extends Component {
-//	constructor(props){
-//		super(props);
-//	}	
-	
 	render() {
 		return(
-			<div className="App">
+			<div className="App col-md-12">
 				<h1>Marvel Character Database</h1>
-				<div>
-					<h3>Input Field</h3>
+				<div className="alpha-search">
 					<FilterByLetter />
 				</div>
-			
-				<div className="col-md-4">
+				<div className="col-md-1"></div>	
+				<div className="col-md-4 well well-sm">
 					<CharacterList />
 				</div>
-				<div className="col-md-4">
+				<div className="col-md-2"></div>
+				<div className="col-md-4 well well-sm">
 					<h3>Biography</h3>
 					<Biography />
 				</div>
+				<div className="col-md-1"></div>
 			</div>
 		);
 	}

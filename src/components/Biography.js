@@ -4,19 +4,20 @@ import {connect} from 'react-redux';
 class Biography extends Component {
 	constructor(props){
 		super(props);
-		this.current = this.props['selectedCharacter'];
 	}
 	render() {
-	if(this.props.selectedCharacter.characters[1]){
-		this.current = this.props.selectedCharacter.characters[1];
+	if(this.props.selectedCharacter[1]){
+		this.current = this.props.selectedCharacter[1];
+		console.log('thumb:', this.current.thumbnail);
 	}
 		return(
 			<div>
 				{
 					this.current ?
-						<div>
-							<h2>{this.current.name}</h2>
-							<p>{this.current.description}</p>
+						<div className="card">
+							<h2 className="card-title">{this.current.name}</h2>
+							<p className="card-text">{this.current.description}</p>
+							<img className="thumbnail" src={this.current.thumbnail.path + "." + this.current.thumbnail.extension}/>
 						</div>
 					:
 						<h4>select a character from the list...</h4>
@@ -28,7 +29,7 @@ class Biography extends Component {
 
 function mapStateToProps(state){
 	return {
-		selectedCharacter: state
+		selectedCharacter: state.characters
 	};
 }
 export default connect(mapStateToProps, null)(Biography);

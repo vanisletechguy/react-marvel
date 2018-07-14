@@ -6,7 +6,6 @@ function characters(state = [], action) {
 		case RECEIVE_CHARACTERS:
 				state = {};		
 				state = [...state, action.characters];
-				state.characters = action.characters;
 			return state;
 		case SET_SELECTED_CHARACTER:
 			state.character = [];
