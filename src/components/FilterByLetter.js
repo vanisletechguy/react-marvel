@@ -17,32 +17,32 @@ class FilterByLetter extends Component {
 	render() {
 		return (
 		<div className="alphabetLinks">
-			<a className="letter" onClick={() => this.handleFilterChange('a')}>A</a>
-			<a className="letter" onClick={() => this.handleFilterChange('b')}>B</a>
-			<a className="letter" onClick={() => this.handleFilterChange('c')}>C</a>
-			<a className="letter" onClick={() => this.handleFilterChange('d')}>D</a>
-			<a className="letter" onClick={() => this.handleFilterChange('e')}>E</a>
-			<a className="letter" onClick={() => this.handleFilterChange('f')}>F</a>
-			<a className="letter" onClick={() => this.handleFilterChange('g')}>G</a>
-			<a className="letter" onClick={() => this.handleFilterChange('h')}>H</a>
-			<a className="letter" onClick={() => this.handleFilterChange('i')}>I</a>
-			<a className="letter" onClick={() => this.handleFilterChange('j')}>J</a>
-			<a className="letter" onClick={() => this.handleFilterChange('k')}>K</a>
-			<a className="letter" onClick={() => this.handleFilterChange('l')}>L</a>
-			<a className="letter" onClick={() => this.handleFilterChange('m')}>M</a>
-			<a className="letter" onClick={() => this.handleFilterChange('n')}>N</a>
-			<a className="letter" onClick={() => this.handleFilterChange('o')}>O</a>
-			<a className="letter" onClick={() => this.handleFilterChange('p')}>P</a>
-			<a className="letter" onClick={() => this.handleFilterChange('q')}>Q</a>
-			<a className="letter" onClick={() => this.handleFilterChange('r')}>R</a>
-			<a className="letter" onClick={() => this.handleFilterChange('s')}>S</a>
-			<a className="letter" onClick={() => this.handleFilterChange('t')}>T</a>
-			<a className="letter" onClick={() => this.handleFilterChange('u')}>U</a>
-			<a className="letter" onClick={() => this.handleFilterChange('v')}>V</a>
-			<a className="letter" onClick={() => this.handleFilterChange('w')}>W</a>
-			<a className="letter" onClick={() => this.handleFilterChange('x')}>X</a>
-			<a className="letter" onClick={() => this.handleFilterChange('y')}>Y</a>
-			<a className="letter" onClick={() => this.handleFilterChange('z')}>Z</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('a')}>A</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('b')}>B</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('c')}>C</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('d')}>D</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('e')}>E</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('f')}>F</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('g')}>G</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('h')}>H</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('i')}>I</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('j')}>J</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('k')}>K</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('l')}>L</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('m')}>M</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('n')}>N</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('o')}>O</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('p')}>P</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('q')}>Q</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('r')}>R</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('s')}>S</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('t')}>T</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('u')}>U</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('v')}>V</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('w')}>W</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('x')}>X</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('y')}>Y</a>
+			<a className="letter btn btn-primary" onClick={() => this.handleFilterChange('z')}>Z</a>
 		</div>
 		) 
 	}

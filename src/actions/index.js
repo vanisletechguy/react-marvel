@@ -11,33 +11,19 @@ function receiveCharacters(json) {
 	return {
 		type:RECEIVE_CHARACTERS,
 		characters
-	}
+	};
 }
 export function fetchCharacters(letter) {
 	return function(dispatch) {
 		return fetchCharactersJSON(letter)
-			.then(json => dispatch(receiveCharacters(json)))
-	}
+			.then(json => dispatch(receiveCharacters(json)));
+	};
 }
 
 export function setSelectedCharacter(character){
 	const action = {
 		type: SET_SELECTED_CHARACTER,
 		character
-	}
+	};
 	return action;
-
-//
-//	return function(dispatch) {
-//		type:SET_SELECTED_CHARACTER,
-//		character
-//	}
-//	return function(dispatch) {(
-//		character => dispatch(
-//		{
-//			type:SET_SELECTED_CHARACTER,
-//			character
-//		})
-//	)
-//	}
 }
