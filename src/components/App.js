@@ -8,8 +8,8 @@ class App extends Component {
 	render() {
 		return(
 			<div className="App col-md-12">
-				<h1>Marvel Character Database</h1>
-				<div className="alpha-search">
+				<h1 className="app-title well well-sm">Marvel Character Database</h1>
+				<div className="alpha-search well well-sm">
 					<FilterByLetter />
 				</div>
 				<div className="col-md-1"></div>	
