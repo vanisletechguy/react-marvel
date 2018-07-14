@@ -4,26 +4,22 @@ import {connect} from 'react-redux';
 class Biography extends Component {
 	constructor(props){
 		super(props);
-	//	const selectedCharacter = this.props;
-	//	console.log('1st', selectedCharacter);
-		//console.log('2nd', state.selectedCharacter);
-		this.current = this.props;
-		console.log('abcdc', this.current);
+		this.current = this.props['selectedCharacter'];
 	}
 	render() {
-	
-	console.log('ssssss', this.props);
-		console.log('1111st', this.props.selectedCharacter);
-
+	if(this.props.selectedCharacter.characters[1]){
+		this.current = this.props.selectedCharacter.characters[1];
+	}
 		return(
 			<div>
-				<h2>BioInfo</h2>
 				{
-					
-					this.props.selectedCharacter ?
-						<h4>{this.props.selectedCharacter.characters[1].name}</h4>
+					this.current ?
+						<div>
+							<h2>{this.current.name}</h2>
+							<p>{this.current.description}</p>
+						</div>
 					:
-						<h4>waiting...</h4>
+						<h4>select a character from the list...</h4>
 				}
 			</div>
 		);
@@ -32,8 +28,7 @@ class Biography extends Component {
 
 function mapStateToProps(state){
 	return {
-//		selectedCharacter: state.selectedCharacter
-		selectedCharacter: state.selectedCharacter
+		selectedCharacter: state
 	};
 }
 export default connect(mapStateToProps, null)(Biography);
