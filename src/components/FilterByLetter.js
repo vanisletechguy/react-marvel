@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../styles/index.css';
 import {fetchCharacters} from '../actions';
+import {clearCharacters} from '../actions';
 
 class FilterByLetter extends Component {
 	constructor(props){
@@ -12,6 +13,7 @@ class FilterByLetter extends Component {
 		this.changeLetter(letter);
 	}
 	changeLetter = (letter) => {
+			this.props.clearCharacters();
 			this.props.newLetter(letter);
 		}
 	render() {
@@ -52,7 +54,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch){
 	return ({
-		newLetter: (letter) => {dispatch(fetchCharacters(letter))}
+		newLetter: (letter) => {dispatch(fetchCharacters(letter))},
+		clearCharacters: () => {dispatch(clearCharacters())}
 	})
 }
 export default connect(mapStateToProps, mapDispatchToProps)(FilterByLetter);

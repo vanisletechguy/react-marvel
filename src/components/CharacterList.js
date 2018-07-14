@@ -2,13 +2,13 @@ import React from 'react';
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {setSelectedCharacter} from '../actions';
+import {clearCharacters} from '../actions';
 import Character from './Character';
 
 class CharacterList extends Component {
 	constructor(props){
 		super(props);
 		this.selectCharacterAlert = this.props.selectCharacterAlert;
-		this.currentlySelectedCharacter = this.props.selectedCharacter;
 	}
 	selectCharacter(e,character){
 		if(this.currentlySelectedCharacter){
@@ -21,7 +21,7 @@ class CharacterList extends Component {
 	}
 	render() {
 		if(!this.props.characters[0]){
-			return(<div>nothing here</div>);
+			return(<div>Loading Characters...</div>);
 		}
 		return( 
 			<div> 
@@ -47,7 +47,6 @@ class CharacterList extends Component {
 								})
 							}
 						</ul>
-			
 					</div>
 				</div>
 			</div>
@@ -59,4 +58,4 @@ function mapStateToProps(state){
 		characters: state.characters
 	};
 }
-export default connect(mapStateToProps, {setSelectedCharacter})(CharacterList);
+export default connect(mapStateToProps, {setSelectedCharacter, clearCharacters})(CharacterList);
