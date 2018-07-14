@@ -8,7 +8,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {fetchCharacters} from './actions';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
-store.subscribe(() => console.log('store', store.getState()));
+store.subscribe(() => console.log('store123', store.getState()));
 store.dispatch(fetchCharacters('a'));
 
 ReactDOM.render(

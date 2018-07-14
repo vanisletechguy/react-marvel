@@ -1,4 +1,5 @@
 export const RECEIVE_CHARACTERS = 'RECEIVE_CHARACTERS';
+export const SET_SELECTED_CHARACTER = 'SET_SELECTED_CHARACTER';
 
 function fetchCharactersJSON(letter) {
 	return fetch('https://gateway.marvel.com:443/v1/public/characters?ts=1&limit=100&&nameStartsWith='+letter+'&apikey=d331da6eb1dccfc20c013db05af8fc8d&hash=7afe95c07a3405af0b83ee17e8439eda')
@@ -7,7 +8,6 @@ function fetchCharactersJSON(letter) {
 
 function receiveCharacters(json) {
 	var characters = json.data.results;
-	console.log('chars', characters);
 	return {
 		type:RECEIVE_CHARACTERS,
 		characters
@@ -18,4 +18,26 @@ export function fetchCharacters(letter) {
 		return fetchCharactersJSON(letter)
 			.then(json => dispatch(receiveCharacters(json)))
 	}
+}
+
+export function setSelectedCharacter(character){
+	const action = {
+		type: SET_SELECTED_CHARACTER,
+		character
+	}
+	return action;
+
+//
+//	return function(dispatch) {
+//		type:SET_SELECTED_CHARACTER,
+//		character
+//	}
+//	return function(dispatch) {(
+//		character => dispatch(
+//		{
+//			type:SET_SELECTED_CHARACTER,
+//			character
+//		})
+//	)
+//	}
 }

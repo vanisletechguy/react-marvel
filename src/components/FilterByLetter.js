@@ -3,13 +3,10 @@ import {connect} from 'react-redux';
 import '../styles/index.css';
 import {fetchCharacters} from '../actions';
 
-
 class FilterByLetter extends Component {
 	constructor(props){
 		super(props);
 		this.handleFilterChange = this.handleFilterChange.bind(this);
-		
-		
 	}
 	handleFilterChange(letter){
 		this.changeLetter(letter);
@@ -47,7 +44,6 @@ class FilterByLetter extends Component {
 			<a className="letter" onClick={() => this.handleFilterChange('y')}>Y</a>
 			<a className="letter" onClick={() => this.handleFilterChange('z')}>Z</a>
 		</div>
-
 		) 
 	}
 }
