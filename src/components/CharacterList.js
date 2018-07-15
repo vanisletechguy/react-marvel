@@ -53,13 +53,16 @@ class CharacterList extends Component {
 		this.currentlySelectedCharacter = e.target.closest('li');
 		this.currentlySelectedCharacter.style = 'background-color: #FFFF00;';	
 		this.props.setSelectedCharacter(character);
-
 	}
 	componentWillReceiveProps(props){
 		this.setListData();
 		this.forceUpdate();
 	}
 	render() {
+
+/////////////removing last whie IN favorites doesnt UPDate componet
+////////////////////////favorites says loading even while empty
+
 		if(this.props.characters[0]) {
 			if(!this.listData || !this.listData[0]) { ///should do once only
 				this.setListData();
@@ -75,10 +78,6 @@ class CharacterList extends Component {
 				this.listData = this.props.characters[0]
 				:
 				this.listData = this.props.favorites;
-		}
-		var listDataSafe = false;
-		if(this.listData && this.listData[0]){
-			listDataSafe = true;
 		}
 		return( 
 			<div>
@@ -98,8 +97,7 @@ class CharacterList extends Component {
 								<div>
 									<ul className="list-group scroll-characters">
 										{
-
-											listDataSafe ?	
+											this.listData && this.listData[0] && ((!this.loading && this.showState === 'SHOW_ALL') || (this.showState === 'SHOW_FAVORITES')) ?	
 												this.listData.map(character => {
 													return(
 														<li 
@@ -108,21 +106,21 @@ class CharacterList extends Component {
 															className="list-group-item"
 															onClick={(e) => this.selectCharacter(e,character)}
 														>
-															{
-																!this.loading ?
-																	<Character
-																		key={character.id}
-																		character={character}
-																		isFavorite={character.isFavorite}
-																	/>
-																	: 
-																	'LOADING...'
-															}
+															<Character
+																key={character.id}
+																character={character}
+																isFavorite={character.isFavorite}
+															/>
 														</li>
 													);
 												})
 												:
-												<li className="list-group-item">loading...</li>
+												this.showState === 'SHOW_ALL' ?
+													<li className="list-group-item">loading...</li>
+													:
+													<li className="list-group-item">no favorites</li>
+
+
 										}
 									</ul>
 								</div>
