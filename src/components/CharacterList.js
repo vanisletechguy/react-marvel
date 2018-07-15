@@ -13,27 +13,20 @@ class CharacterList extends Component {
 	constructor(props){
 		super(props);
 		this.selectCharacterAlert = this.props.selectCharacterAlert;
-
 		var showState = SHOW_ALL;
 		this.showState = showState;
 		var listData = this.props.characters[0];
 		this.listData = listData;
+		this.loading = true;
 	}
 	setListData(){
-		if(this.showState === SHOW_ALL){this.listData = this.props.characters[0];}
-		else if(this.showState === SHOW_FAVORITES && this.props.favorites[0]) {this.listData = this.props.favorites;}
-		else{this.listData = [];}
-		if(this.props.favorites[0]){
-			this.props.favorites.map((fav) => {
-				if(this.listData && this.listData[0]){
-					this.listData.map((character) => {
-						if(character == fav){
-							character.isFavorite = true;
-						}	
-					});
-				}
-			});
+		if(this.showState === SHOW_ALL && !this.listData){
+			this.listData = this.props.characters[0];
 		}
+		else if(this.showState === SHOW_FAVORITES && this.props.favorites[0]) {
+			this.listData = this.props.favorites;
+		}
+		else if(!this.listData){this.listData = [];}
 	}
 	showAll(){
 		this.showState = SHOW_ALL;
@@ -43,6 +36,7 @@ class CharacterList extends Component {
 	}
 	showFavorites(){
 		this.showState = SHOW_FAVORITES;
+		this.listData = this.props.favorites;
 		this.setListData();
 		this.forceUpdate();
 	}
@@ -50,33 +44,41 @@ class CharacterList extends Component {
 		if(this.currentlySelectedCharacter){
 			this.currentlySelectedCharacter.style = 'background-color: #FFFFFF;';
 		}
-		this.selectedCharacter = character;
-		this.props.setSelectedCharacter(character);
-		let unFav = this.props.unfavoriteCharacter;
 		if(e.target.tagName === 'SPAN') {
 			character.isFavorite ?
-				(
-					unFav(character),
-					//this.props.unfavoriteCharacter(character)
-					character.isFavorite = false
-				)
+				this.props.unfavoriteCharacter(character)
 				:
 				this.props.favoriteCharacter(character);
 		}
 		this.currentlySelectedCharacter = e.target.closest('li');
 		this.currentlySelectedCharacter.style = 'background-color: #FFFF00;';	
+		this.props.setSelectedCharacter(character);
 
+	}
+	componentWillReceiveProps(props){
+		this.setListData();
 		this.forceUpdate();
 	}
-	componentDidMount(){
-		this.setListData();
-	}
 	render() {
-		if(this.props.characters) { ///should do once only
+		if(this.props.characters[0]) {
+			if(!this.listData || !this.listData[0]) { ///should do once only
+				this.setListData();
+			}
+		} 
+		if(this.listData && this.listData[0] && this.props.favorites && this.props.favorites[0] && this.props.favorites.length !== this.listData.length && this.showState === 'SHOW_FAVORITES'){
 			this.setListData();
 		}
-		if(!this.listData){
-			return(<div>Loading Characters...</div>);
+		this.loading = false;
+		if(!this.props.characters[0] || !this.listData ){
+			this.loading = true;
+			this.showState === 'SHOW_ALL' ?
+				this.listData = this.props.characters[0]
+				:
+				this.listData = this.props.favorites;
+		}
+		var listDataSafe = false;
+		if(this.listData && this.listData[0]){
+			listDataSafe = true;
 		}
 		return( 
 			<div>
@@ -84,10 +86,10 @@ class CharacterList extends Component {
 				<div id="exTab1">	
 					<ul  className="nav nav-pills">
 						<li className="active">
-							<a onClick={() => this.showAll()} data-toggle="tab">Characters</a>
+							<a onClick={() => this.showAll()} data-toggle="tab" href="#">Characters</a>
 						</li>
 						<li className="active">
-							<a onClick={() => this.showFavorites()} data-toggle="tab">Favorites</a>
+							<a onClick={() => this.showFavorites()} data-toggle="tab" href="#">Favorites</a>
 						</li>
 					</ul>
 					<div className="tab-content clearfix">
@@ -96,46 +98,31 @@ class CharacterList extends Component {
 								<div>
 									<ul className="list-group scroll-characters">
 										{
-											this.listData.map(character => {
-												return(
-													<li 
-														key={character.id} 
-														data-id={character.id}
-														className="list-group-item"
-														onClick={(e) => this.selectCharacter(e,character)}
-													>
-														<Character
-															key={character.id}
-															character={character}
-														/>
-													</li>
-												);
-											})
-										}
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div className="tab-pane" id="2a">
-							<div className="card-wrapper">
-								<div>
-									<ul className="list-group scroll-characters">
-										{
-											this.listData.map(character => {
-												return(
-													<li 
-														key={character.id} 
-														data-id={character.id}
-														className="list-group-item"
-														onClick={(e) => this.selectCharacter(e,character)}
-													>
-														<Character
-															key={character.id}
-															character={character}
-														/>
-													</li>
-												);
-											})
+
+											listDataSafe ?	
+												this.listData.map(character => {
+													return(
+														<li 
+															key={character.id} 
+															data-id={character.id}
+															className="list-group-item"
+															onClick={(e) => this.selectCharacter(e,character)}
+														>
+															{
+																!this.loading ?
+																	<Character
+																		key={character.id}
+																		character={character}
+																		isFavorite={character.isFavorite}
+																	/>
+																	: 
+																	'LOADING...'
+															}
+														</li>
+													);
+												})
+												:
+												<li className="list-group-item">loading...</li>
 										}
 									</ul>
 								</div>

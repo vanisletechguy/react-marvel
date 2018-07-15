@@ -11,6 +11,24 @@ function characters(state = [], action) {
 	case RECEIVE_CHARACTERS:
 		state = [action.characters];
 		return state;
+	case FAVORITE_CHARACTER:
+		if(state[0]){
+			state[0].forEach((x)=>{
+				if( x.id === action.favorite.id){
+					x.isFavorite = true;
+				}
+			});
+		}
+		return state;
+	case UNFAVORITE_CHARACTER:
+		if(state[0]){
+			state[0].forEach((x)=>{
+				if(x.id === action.favorite.id){
+					x.isFavorite = false;
+				}
+			});
+		}
+		return state;
 	default:
 		return state;	
 	}
@@ -30,7 +48,7 @@ function favorite(state = [], action) {
 	var newState = [];
 	switch (action.type) {
 	case FAVORITE_CHARACTER:
-		if(state && state[0]){
+		if(state[0]){
 			newState = state.filter((c) => c !== action.favorite);
 			newState = [...newState, action.favorite];
 		} else{
@@ -42,7 +60,6 @@ function favorite(state = [], action) {
 		return state;
 	default:
 		return state;
-			
 	}
 }
 const rootReducer = combineReducers({characters, selected, favorite});
