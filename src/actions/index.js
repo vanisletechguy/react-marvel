@@ -1,6 +1,8 @@
 export const RECEIVE_CHARACTERS = 'RECEIVE_CHARACTERS';
 export const SET_SELECTED_CHARACTER = 'SET_SELECTED_CHARACTER';
 export const CLEAR_CHARACTERS = 'CLEAR_CHARACTERS';
+export const FAVORITE_CHARACTER = 'FAVORITE_CHARACTER';
+export const UNFAVORITE_CHARACTER = 'UNFAVORITE_CHARACTER';
 
 function fetchCharactersJSON(letter) {
 	return fetch('https://gateway.marvel.com:443/v1'+
@@ -36,4 +38,18 @@ export function setSelectedCharacter(character){
 		character
 	};
 	return action;
+}
+
+export function favoriteCharacter(favorite){
+	return{
+		type: FAVORITE_CHARACTER,
+		favorite	
+	};
+}
+
+export function unfavoriteCharacter(favorite){
+	return{
+		type: UNFAVORITE_CHARACTER,
+		favorite
+	};
 }

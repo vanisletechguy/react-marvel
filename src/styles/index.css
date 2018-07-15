@@ -12,11 +12,12 @@ body{
 	width: 60%;
 	background-color: red;
 	font-style: bold;
+	border: none;
 }
 .alphabetLinks{
 	display: inline-block;
 	cursor: pointer;
-	background-color: rgba(225, 0, 0, 0.8);
+	background-color: rgba(225, 0, 0, 0.9);
 }
 .letter{
 	display: inline-block;
@@ -27,6 +28,9 @@ body{
 	border-color: #adadad;
 	width: 40px;
 }
+.letter:hover{
+	width: 60px;
+}
 img {
 	max-width: 60%;
 	max-height: 200px;
@@ -36,6 +40,7 @@ img {
 	overflow:auto;
 	height: 350px;
 	color: black;
+	border: none;
 }
 .biography{
 	overflow: auto;
@@ -51,11 +56,16 @@ img {
 	border: none;
 }
 .well {
-   background-color: rgba(225, 0, 0, 0.8);
+   background-color: rgba(225, 0, 0, 0.9);
+
+	border: none;
 }
 h1{
 	color: black;
 }
 h3{
 	color: black;
+}
+.favBadge{
+	float: right
 }
