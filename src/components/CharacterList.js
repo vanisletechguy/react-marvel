@@ -13,17 +13,15 @@ class CharacterList extends Component {
 	constructor(props){
 		super(props);
 		this.selectCharacterAlert = this.props.selectCharacterAlert;
-		var showState = SHOW_ALL;
-		this.showState = showState;
-		var listData = this.props.characters[0];
-		this.listData = listData;
+		this.showState = SHOW_ALL;
+		this.listData = this.props.characters[0];
 		this.loading = true;
 	}
 	setListData(){
 		if(this.showState === SHOW_ALL && !this.listData){
 			this.listData = this.props.characters[0];
 		}
-		else if(this.showState === SHOW_FAVORITES && this.props.favorites[0]) {
+		else if(this.showState === SHOW_FAVORITES ) {
 			this.listData = this.props.favorites;
 		}
 		else if(!this.listData){this.listData = [];}
@@ -54,23 +52,22 @@ class CharacterList extends Component {
 		this.currentlySelectedCharacter.style = 'background-color: #FFFF00;';	
 		this.props.setSelectedCharacter(character);
 	}
-	componentWillReceiveProps(props){
+	componentWillReceiveProps(){
 		this.setListData();
 		this.forceUpdate();
 	}
-	render() {
-
-/////////////removing last whie IN favorites doesnt UPDate componet
-////////////////////////favorites says loading even while empty
-
-		if(this.props.characters[0]) {
-			if(!this.listData || !this.listData[0]) { ///should do once only
-				this.setListData();
-			}
-		} 
+	checkData(){
+		if(this.props.characters[0] && (!this.listData || !this.listData[0])) {
+			this.setListData();
+		}
 		if(this.listData && this.listData[0] && this.props.favorites && this.props.favorites[0] && this.props.favorites.length !== this.listData.length && this.showState === 'SHOW_FAVORITES'){
 			this.setListData();
 		}
+		if(this.showState === 'SHOW_FAVORITES' && !this.props.favorites[0]){
+			this.setListData();
+		}
+	}
+	checkLoading(){
 		this.loading = false;
 		if(!this.props.characters[0] || !this.listData ){
 			this.loading = true;
@@ -79,16 +76,20 @@ class CharacterList extends Component {
 				:
 				this.listData = this.props.favorites;
 		}
+	}
+	render() {
+		this.checkData();
+		this.checkLoading();
 		return( 
 			<div>
 				<h3>Characters</h3>
 				<div id="exTab1">	
 					<ul  className="nav nav-pills">
 						<li className="active">
-							<a onClick={() => this.showAll()} data-toggle="tab" href="#">Characters</a>
+							<a onClick={() => this.showAll()}>Characters</a>
 						</li>
 						<li className="active">
-							<a onClick={() => this.showFavorites()} data-toggle="tab" href="#">Favorites</a>
+							<a onClick={() => this.showFavorites()}>Favorites</a>
 						</li>
 					</ul>
 					<div className="tab-content clearfix">
@@ -119,8 +120,6 @@ class CharacterList extends Component {
 													<li className="list-group-item">loading...</li>
 													:
 													<li className="list-group-item">no favorites</li>
-
-
 										}
 									</ul>
 								</div>

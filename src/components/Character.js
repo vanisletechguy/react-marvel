@@ -1,7 +1,5 @@
 import React from 'react';
 import {Component} from 'react';
-import {favoriteCharacter} from '../actions';
-import {unfavoriteCharacter} from '../actions';
 class Character extends Component {
 	render() {
 		return(
