@@ -81,7 +81,7 @@ class CharacterList extends Component {
 		this.checkData();
 		this.checkLoading();
 		return( 
-			<div>
+			<div className="characterWrapper">
 				<h3>Characters</h3>
 				<div id="exTab1">	
 					<ul  className="nav nav-pills">

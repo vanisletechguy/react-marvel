@@ -17,9 +17,8 @@ class App extends Component {
 				<div className="col-md-4 well well-sm">
 					<CharacterList />
 				</div>
-				<div className="col-md-2"></div>
-				<div className="col-md-4 well well-sm biography">
-					<h3>Biography</h3>
+				<div className="col-md-1"></div>
+				<div className="col-md-5 well well-sm biography">
 					<Biography />
 				</div>
 				<div className="col-md-1"></div>

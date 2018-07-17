@@ -1,5 +1,5 @@
 body{
-	background-image: url('../assets/marvel-logo-wallpaper.jpg');
+	background: radial-gradient(#5E8490, #00181F);
 	background-size: 100%;
 	background-repeat: none;
 }
@@ -10,14 +10,14 @@ body{
 .app-title{
 	margin: auto;
 	width: 60%;
-	background-color: red;
+	background-color: #5E8490;
 	font-style: bold;
 	border: none;
+	border-radius: 25px;
 }
 .alphabetLinks{
 	display: inline-block;
 	cursor: pointer;
-	background-color: rgba(225, 0, 0, 0.9);
 }
 .letter{
 	display: inline-block;
@@ -27,14 +27,34 @@ body{
 	margin-bottom: 4px;
 	border-color: #adadad;
 	width: 40px;
+	color: #00181F;
+	font-size: 1.2em;
+	font-style: bold;
 }
 .letter:hover{
-	width: 60px;
+	color: #BDC4C7;
+}
+.portrait{
+	background-color: #00181F;
+	height: 100%;
+	vertical-align: middle;
 }
 img {
-	max-width: 60%;
-	max-height: 200px;
-	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+	width: auto;
+	margin: auto auto;
+}
+.characterwrapper{
+	height:500px;
+}
+.biowrapper{
+  justify-content: center;
+	height: 90%;
+	width: 90%;
+	vertical-align: middle;
+	
 }
 .scroll-characters {
 	overflow:auto;
@@ -44,9 +64,11 @@ img {
 }
 .biography{
 	overflow: auto;
-	height: 450px;
 	color: black;
-	font-size: 1.5em;
+	font-size: 1em;
+	height: 350px;
+}
+.flexxy{
 }
 .alpha-search {
 	width: 60%;
@@ -56,16 +78,27 @@ img {
 	border: none;
 }
 .well {
-   background-color: rgba(225, 0, 0, 0.9);
-
+	border-radius: 25px;
 	border: none;
+	background: radial-gradient(#BDC4C7, #5E8490);
 }
 h1{
 	color: black;
 }
 h3{
 	color: black;
+	border-radius: 25px;
+	background-color: #BDC4C7;
 }
 .favBadge{
 	float: right
+}
+.bioDetails{
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+.nav-pills .pill-1 .nav-link {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: white;
 }
