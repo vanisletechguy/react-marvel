@@ -84,6 +84,7 @@ img {
 	border-radius: 25px;
 	border: none;
 	background: radial-gradient(#BDC4C7, #5E8490);
+	box-shadow: 2px 2px 4px 5px #00181F;
 }
 h1{
 	color: black;
