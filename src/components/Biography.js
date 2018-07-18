@@ -13,17 +13,17 @@ class Biography extends Component {
 				<h3>{this.current.name}</h3>
 				{
 					this.current.name?
-							<div className="biowrapper bioDetails">
-								<div className="col-md-6 portrait">
-									<img className="" 
-										src={this.current.thumbnail.path + 
+						<div className="biowrapper bioDetails">
+							<div className="col-md-6 portrait">
+								<img className="" 
+									src={this.current.thumbnail.path + 
 											'.' + this.current.thumbnail.extension}
-										alt='Marvel character portrait' />
-								</div>
-								<div className="col-md-6 bioDescription">
-									<p className="">{this.current.description}</p>
-								</div>
+									alt='Marvel character portrait' />
 							</div>
+							<div className="col-md-6 bioDescription">
+								<p className="">{this.current.description}</p>
+							</div>
+						</div>
 						:
 						<h4>select a character from the list...</h4>
 				}
