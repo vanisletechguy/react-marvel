@@ -16,6 +16,8 @@ class CharacterList extends Component {
 		this.showState = SHOW_ALL;
 		this.listData = this.props.characters[0];
 		this.loading = true;
+		this.charsTab = React.createRef();	
+		this.favsTab = React.createRef();
 	}
 	setListData(){
 		if(this.showState === SHOW_ALL && !this.listData){
@@ -26,15 +28,21 @@ class CharacterList extends Component {
 		}
 		else if(!this.listData){this.listData = [];}
 	}
-	showAll(){
+	showAll(event){
 		this.showState = SHOW_ALL;
 		this.listData = this.props.characters[0];
+		let thecharsTab = event.target.closest('li');
+		thecharsTab.className='mynavs active';
+		thecharsTab.nextSibling.className='mynavs';
 		this.setListData();
 		this.forceUpdate();
 	}
-	showFavorites(){
+	showFavorites(event){
 		this.showState = SHOW_FAVORITES;
 		this.listData = this.props.favorites;
+		let thefavsTab = event.target.closest('li');
+		thefavsTab.className='mynavs active';
+		thefavsTab.previousSibling.className='mynavs';
 		this.setListData();
 		this.forceUpdate();
 	}
@@ -60,7 +68,10 @@ class CharacterList extends Component {
 		if(this.props.characters[0] && (!this.listData || !this.listData[0])) {
 			this.setListData();
 		}
-		if(this.listData && this.listData[0] && this.props.favorites && this.props.favorites[0] && this.props.favorites.length !== this.listData.length && this.showState === 'SHOW_FAVORITES'){
+		if(this.listData && this.listData[0] && this.props.favorites && 
+			this.props.favorites[0] && 
+			this.props.favorites.length !== this.listData.length && 
+			this.showState === 'SHOW_FAVORITES'){
 			this.setListData();
 		}
 		if(this.showState === 'SHOW_FAVORITES' && !this.props.favorites[0]){
@@ -84,12 +95,12 @@ class CharacterList extends Component {
 			<div className="characterWrapper">
 				<h3>Characters</h3>
 				<div id="exTab1">	
-					<ul  className="nav nav-pills">
-						<li className="active">
-							<a onClick={() => this.showAll()}>Characters</a>
+					<ul className="nav nav-pills">
+						<li className="active mynavs" ref={this.charsTab}>
+							<a onClick={(e) => this.showAll(e)}>Characters</a>
 						</li>
-						<li className="active">
-							<a onClick={() => this.showFavorites()}>Favorites</a>
+						<li className="mynavs" ref={this.favsTab}>
+							<a onClick={(e) => this.showFavorites(e)}>Favorites</a>
 						</li>
 					</ul>
 					<div className="tab-content clearfix">
@@ -98,7 +109,9 @@ class CharacterList extends Component {
 								<div>
 									<ul className="list-group scroll-characters">
 										{
-											this.listData && this.listData[0] && ((!this.loading && this.showState === 'SHOW_ALL') || (this.showState === 'SHOW_FAVORITES')) ?	
+											this.listData && this.listData[0] && ((!this.loading && 
+												this.showState === 'SHOW_ALL') || 
+												(this.showState === 'SHOW_FAVORITES')) ?	
 												this.listData.map(character => {
 													return(
 														<li 
@@ -137,4 +150,5 @@ function mapStateToProps(state){
 		favorites: state.favorite
 	};
 }
-export default connect(mapStateToProps, {setSelectedCharacter, clearCharacters, favoriteCharacter, unfavoriteCharacter})(CharacterList);
+export default connect(mapStateToProps, {setSelectedCharacter, 
+	clearCharacters, favoriteCharacter, unfavoriteCharacter})(CharacterList);
