@@ -20,7 +20,7 @@ class Biography extends Component {
 											'.' + this.current.thumbnail.extension}
 										alt='Marvel character portrait' />
 								</div>
-								<div className="col-md-6">
+								<div className="col-md-6 bioDescription">
 									<p className="">{this.current.description}</p>
 								</div>
 							</div>
